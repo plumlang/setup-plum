@@ -26,14 +26,17 @@ jobs:
       - uses: plumlang/setup-plum@v1
       - run: plum check main.plum        # every error, without running
       - run: plum fmt --check .          # lists files that would change
-      - run: plum run tests/main.plum    # your tests, with assert(...)
+      - run: plum test                   # every test_ function in *_test.plum files
 ```
 
 `plum check` takes one file (or a folder with a `plum.toml`), and
-`plum fmt --check` takes files and folders. Plumlang has no `plum test`
-command yet, so run a program that calls `assert` and exits non-zero on
-failure. See the [docs](https://plum.elixpo.com/docs/) for the language and
-the `plum` command.
+`plum fmt --check` takes files and folders. `plum test` runs the `test_`
+functions in every `*_test.plum` file under the current directory and
+exits 1 if one fails ([testing](https://github.com/plumlang/plumlang/blob/main/docs/test.md));
+it comes with the first Plumlang release after 2.1.4, so with 2.1.x run a
+program that calls `assert` instead (`plum run tests/main.plum`). See the
+[docs](https://plum.elixpo.com/docs/) for the language and the `plum`
+command.
 
 ### A version
 
